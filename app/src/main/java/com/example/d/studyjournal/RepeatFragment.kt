@@ -31,12 +31,13 @@ class RepeatFragment : Fragment() {
     private var mListener:OnFragmentInteractionListener? = null
 
     //Probably not initializing properly
-    public var yesterday: LinearLayout? = null
-    public var week: LinearLayout? = null
-    public var month: LinearLayout?= null
-    public var year: LinearLayout? = null
+    var yesterday: LinearLayout? = null
+    var week: LinearLayout? = null
+    var month: LinearLayout?= null
+    var year: LinearLayout? = null
 
     private lateinit var res: android.content.res.Resources
+    //TODO Make private
     public var height: Int = -1
 
     //TODO  Make private
