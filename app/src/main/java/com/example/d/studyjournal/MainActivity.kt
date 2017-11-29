@@ -60,23 +60,13 @@ class MainActivity : AppCompatActivity(), RepeatFragment.OnFragmentInteractionLi
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
-        /*fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-        */
+        //TODO This should be in The other class.
         fab.setOnClickListener {
-            onClick()
+            //TODO Do the whole new skills thing here
         }
+
 
         repeatFragment = mSectionsPagerAdapter?.getItem(REPEAT_INDEX) as RepeatFragment
-        Log.i("OnCreateMainActicity", repeatFragment.height.toString())
-    }
-
-    private fun onClick() {
-        val week: LinearLayout = findViewById(R.id.weekLayout)
-        repeatFragment.addCheckBox(week, "OOOOOOOOOOOOOOOOOOO", this@MainActivity)
-        Log.i("OnClickMainActivity", repeatFragment.height.toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

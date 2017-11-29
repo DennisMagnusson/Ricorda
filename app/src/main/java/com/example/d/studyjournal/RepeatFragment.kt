@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 /**
@@ -38,26 +39,21 @@ class RepeatFragment : Fragment() {
 
     private lateinit var res: android.content.res.Resources
     //TODO Make private
-    public var height: Int = -1
+    private var height: Int = -1
 
     //TODO  Make private
-    private fun createCheckBox(text:String, ctx: Context) : CheckBox {
-        val checkBox = CheckBox(ctx)
-        //val checkBox: CheckBox = CheckBox(activity.applicationContext)
+    private fun createCheckBox(text:String) : CheckBox {
+        val checkBox = CheckBox(activity)
         checkBox.isChecked = false
         checkBox.text = text
         checkBox.width = ActionBar.LayoutParams.MATCH_PARENT
-        //checkBox.height= resources.getDimension(R.dimen.repeat_checkbox_height).toInt()
-        checkBox.height = 24
-        Log.i("ASDLFAJSDFLKASF", height.toString())
-        //checkBox.height = height
-        //checkBox.height = res.getDimension(R.dimen.repeat_checkbox_height).toInt()
-        checkBox.layoutDirection = View.LAYOUT_DIRECTION_RTL
+        checkBox.height = height
         return checkBox
     }
 
-    public fun addCheckBox(l: LinearLayout?, text: String, ctx: Context) {
-        l?.addView(createCheckBox(text, ctx))
+    private fun addCheckBox(l: LinearLayout?, text: String, ctx: Context) {
+        val checkBox = createCheckBox(text)
+        l?.addView(checkBox)
     }
 
     public override fun onCreate(savedInstanceState:Bundle?) {
@@ -65,19 +61,35 @@ class RepeatFragment : Fragment() {
         if (getArguments() != null) {
             text = getArguments().getString("text")
         }
-
-        res = resources
-        height = res.getDimension(R.dimen.repeat_checkbox_height).toInt()
-        Log.i("THIS IS IN ONCREATE", height.toString())
-
+        Log.i("This is in", "onCreate")
     }
 
     public override fun onCreateView(inflater:LayoutInflater?, container:ViewGroup?,
                                      savedInstanceState:Bundle?):View? {
         // Inflate the layout for this fragment
+        //WOOOHOOO This works
+        res = resources
+        height = res.getDimension(R.dimen.repeat_checkbox_height).toInt()
 
-        Log.i("THIS IS IN ONCREATEVIEW", height.toString())
-        return inflater!!.inflate(R.layout.fragment_repeat, container, false)
+        //val v: View? = view?.findViewById(R.id.repeatTab)
+        val view: View? = inflater!!.inflate(R.layout.fragment_repeat, container, false)
+
+        yesterday = view?.findViewById(R.id.yesterdayLayout)
+        week = view?.findViewById(R.id.weekLayout)
+        month = view?.findViewById(R.id.monthLayout)
+        year = view?.findViewById(R.id.yearLayout)
+
+        yesterday?.addView(createCheckBox("EEEEEEEEEEEEEEEEEEEEEEEEEEE"))
+        addCheckBox(yesterday, "ABCKDK", context)
+        addCheckBox(week, "ABCKDK", context)
+        addCheckBox(week, "ABCKDK", context)
+        addCheckBox(week, "ABCKDK", context)
+        addCheckBox(week, "ABCKDK", context)
+        addCheckBox(year, "LLLLLLLLLLLLLLLLLLLLLLL", context)
+        addCheckBox(month, "OOOOOOWWWWWWWWWEEEEEOOOOOOOO", context)
+        Log.i("This is in", "onCreateView")
+
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -115,10 +127,7 @@ class RepeatFragment : Fragment() {
             val args = Bundle()
             args.putString(ARG_PARAM1, text)
             fragment.setArguments(args)
-            fragment.yesterday = fragment.view?.findViewById(R.id.yesterdayLayout)
-            fragment.week = fragment.view?.findViewById(R.id.weekLayout)
-            fragment.month = fragment.view?.findViewById(R.id.monthLayout)
-            fragment.year = fragment.view?.findViewById(R.id.yearLayout)
+
             return fragment
         }
 

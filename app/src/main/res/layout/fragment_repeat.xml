@@ -14,7 +14,8 @@
         <android.support.v7.widget.CardView
             android:id="@+id/yesterdayCard"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -23,18 +24,11 @@
                 android:orientation="vertical">
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_alignParentStart="true"
-                    android:text="CheckBoxdfasdf" />
-
-                <CheckBox
                     android:id="@+id/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:checked="false"
-                    android:text="CheckBox" />
+                    android:text="TestCheckBox" />
 
             </LinearLayout>
 
@@ -45,7 +39,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/weekCard">
+            android:id="@+id/weekCard"
+            android:layout_marginVertical="15dp">
 
             <LinearLayout
                 android:id="@+id/weekLayout"
@@ -60,7 +55,9 @@
         <android.support.v7.widget.CardView
             android:id="@+id/monthCard"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="50dp"
+            android:paddingVertical="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
