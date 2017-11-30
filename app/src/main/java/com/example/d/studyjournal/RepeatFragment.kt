@@ -16,7 +16,6 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the

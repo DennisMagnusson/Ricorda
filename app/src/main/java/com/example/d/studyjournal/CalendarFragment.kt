@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
 
 
 /**
@@ -36,7 +37,11 @@ class CalendarFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_calendar, container, false)
+        var view = inflater!!.inflate(R.layout.fragment_calendar, container, false)
+        val calendar: CalendarView = view.findViewById(R.id.calendarView)
+        //TODO Replace the calendar with something else
+        //calendar.draw()//I guess we're doing this
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
