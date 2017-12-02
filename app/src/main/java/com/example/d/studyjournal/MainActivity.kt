@@ -1,5 +1,6 @@
 package com.example.d.studyjournal
 
+import android.content.Intent
 import android.net.Uri
 import android.support.design.widget.TabLayout
 import android.support.design.widget.Snackbar
@@ -59,11 +60,9 @@ class MainActivity : AppCompatActivity(), RepeatFragment.OnFragmentInteractionLi
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
-        //TODO This should be in The other class.
         fab.setOnClickListener {
-            //TODO Do the whole new skills thing here
+            startActivity(Intent(this, AddActivity::class.java))
         }
-
 
         repeatFragment = mSectionsPagerAdapter?.getItem(REPEAT_INDEX) as RepeatFragment
     }
