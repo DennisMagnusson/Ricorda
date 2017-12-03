@@ -1,5 +1,6 @@
 package com.example.d.studyjournal
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -30,7 +31,6 @@ class AddActivity : AppCompatActivity() {
         }
     }
 
-
     private fun createTextView(text:String): LinearLayout {
         var layout = LinearLayout(this@AddActivity)
         layout.orientation = LinearLayout.HORIZONTAL
@@ -50,6 +50,11 @@ class AddActivity : AppCompatActivity() {
         layout.addView(button)
 
         return layout
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        startActivity(Intent(this, MainActivity::class.java))
+        return super.onSupportNavigateUp()
     }
 
 

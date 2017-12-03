@@ -74,9 +74,24 @@ class RepeatFragment : Fragment() {
         val view: View? = inflater!!.inflate(R.layout.fragment_repeat, container, false)
 
         yesterday = view?.findViewById(R.id.yesterdayLayout)
+        layoutOnClickListener(yesterday)
+        /*
+        yesterday?.setOnClickListener {
+            var c: Int = yesterday!!.childCount
+            var i: Int = 0
+            while(i < this.childCount) {
+                this.getChildAt()
+                i++
+            }
+        }
+        year.setOnTouchListener()
+        */
         week = view?.findViewById(R.id.weekLayout)
+        layoutOnClickListener(week)
         month = view?.findViewById(R.id.monthLayout)
+        layoutOnClickListener(month)
         year = view?.findViewById(R.id.yearLayout)
+        layoutOnClickListener(year)
 
         yesterday?.addView(createCheckBox("EEEEEEEEEEEEEEEEEEEEEEEEEEE"))
         addCheckBox(yesterday, "ABCKDK", context)
@@ -91,7 +106,6 @@ class RepeatFragment : Fragment() {
         return view
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri:Uri) {
         if (mListener != null) mListener!!.onFragmentInteraction(uri)
     }
@@ -105,6 +119,26 @@ class RepeatFragment : Fragment() {
     public override fun onDetach() {
         super.onDetach()
         mListener = null
+    }
+
+    //TODO FIXME XXX Add onclicklisteners to all checkboxes, that run a function that does this?
+    private fun layoutOnClickListener(layout: LinearLayout?) {
+        layout?.setOnClickListener {
+            var i: Int = 0
+            var remove = true
+            Log.i("ChildCount", layout.childCount.toString())
+            while(i < layout.childCount) {
+                var a: CheckBox = layout?.getChildAt(i) as CheckBox
+                if(!a.isChecked) {
+                    remove = false
+                    break
+                }
+                i++
+            }
+            if(remove) {
+                layout?.animate().translationX(layout.width.toFloat())
+            }
+        }
     }
 
     /**
