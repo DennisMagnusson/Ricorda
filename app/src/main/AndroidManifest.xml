@@ -22,7 +22,7 @@
         <activity
             android:name=".AddActivity"
             android:label="What did you learn today?"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

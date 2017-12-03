@@ -2,8 +2,6 @@ package com.example.d.studyjournal
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -19,22 +17,16 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
-        //this.supportActionBar?.setHomeAsUpIndicator(R.drawable.abc_btn_check_material)
-        //TODO Fix this. This doesn't work
-        //actionBar.setDisplayHomeAsUpEnabled(true)
-
-        //this.supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_)
+        setSupportActionBar(findViewById(R.id.addToolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         addLayout = findViewById(R.id.addLayout)
         addButton = findViewById(R.id.addButton)
         editText = findViewById(R.id.editText)
 
         addButton.setOnClickListener {
-            try {
-                addLayout.addView(createTextView(editText.text.toString()))
-            } catch (e:Exception) {
-                Log.i("TJKTJ", e.message)
-            }
+            addLayout.addView(createTextView(editText.text.toString()))
+            editText.text.clear()
         }
     }
 
