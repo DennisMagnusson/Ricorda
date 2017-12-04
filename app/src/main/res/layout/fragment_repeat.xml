@@ -29,13 +29,6 @@
                     android:layout_height="wrap_content"
                     android:text="Yesterday" />
 
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:checked="false"
-                    android:text="TestCheckBox" />
-
             </LinearLayout>
 
 
@@ -60,17 +53,9 @@
                     android:layout_height="wrap_content"
                     android:text="A week ago" />
 
-                <CheckBox
-                    android:id="@+id/checkBo2x"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:checked="false"
-                    android:text="TestCheckBox" />
-
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
-
 
         <android.support.v7.widget.CardView
             android:id="@+id/monthCard"
@@ -78,17 +63,17 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/card_vertical_margin">
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A month ago" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/monthLayout"
                 android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A month ago" />
+
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
@@ -99,17 +84,18 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/card_vertical_margin">
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A year ago" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/yearLayout"
                 android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A year ago" />
+
             </LinearLayout>
         </android.support.v7.widget.CardView>
 

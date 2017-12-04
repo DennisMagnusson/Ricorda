@@ -57,7 +57,13 @@ class RepeatFragment : Fragment() {
         var remove = true
         Log.i("ChildCount", l?.childCount.toString())
         while(i < l!!.childCount) {
-            var a: CheckBox = l?.getChildAt(i) as CheckBox
+            var a: CheckBox
+            try {
+                a = l?.getChildAt(i) as CheckBox
+            } catch (e: ClassCastException) {
+                i++
+                continue
+            }
             if (!a.isChecked) {
                 remove = false
                 break
@@ -65,7 +71,11 @@ class RepeatFragment : Fragment() {
             i++
         }
         if(remove) {
-            l?.animate().translationX(l.width.toFloat())
+            val card: CardView = l?.parent as CardView
+            card.animate().translationX(l.width.toFloat())
+                          .alpha(0.0f)
+                          .setDuration(1000)
+                          .withEndAction({card.visibility = View.GONE})
         }
     }
 
@@ -73,23 +83,6 @@ class RepeatFragment : Fragment() {
         val checkBox = createCheckBox(text)
         checkBox.setOnCheckedChangeListener { checkBox, isChecked ->  listener(l)}
 
-        /*checkBox.setOnCheckedChangeListener {
-            var i = 0
-            var remove = true
-            Log.i("ChildCount", l?.childCount.toString())
-            while(i < l!!.childCount) {
-                var a: CheckBox = l?.getChildAt(i) as CheckBox
-                if (!a.isChecked) {
-                    remove = false
-                    break
-                }
-                i++
-            }
-            if(remove) {
-                l?.animate().translationX(l.width.toFloat())
-            }
-        }
-        */
         l?.addView(checkBox)
     }
 
@@ -103,38 +96,18 @@ class RepeatFragment : Fragment() {
 
     public override fun onCreateView(inflater:LayoutInflater?, container:ViewGroup?,
                                      savedInstanceState:Bundle?):View? {
-        // Inflate the layout for this fragment
-        //WOOOHOOO This works
         res = resources
         height = res.getDimension(R.dimen.repeat_checkbox_height).toInt()
 
-        //val v: View? = view?.findViewById(R.id.repeatTab)
         val view: View? = inflater!!.inflate(R.layout.fragment_repeat, container, false)
 
         yesterday = view?.findViewById(R.id.yesterdayLayout)
-        layoutOnClickListener(yesterday)
-        /*
-        yesterday?.setOnClickListener {
-            var c: Int = yesterday!!.childCount
-            var i: Int = 0
-            while(i < this.childCount) {
-                this.getChildAt()
-                i++
-            }
-        }
-        year.setOnTouchListener()
-        */
         week = view?.findViewById(R.id.weekLayout)
-        layoutOnClickListener(week)
         month = view?.findViewById(R.id.monthLayout)
-        layoutOnClickListener(month)
         year = view?.findViewById(R.id.yearLayout)
-        layoutOnClickListener(year)
 
-        yesterday?.addView(createCheckBox("EEEEEEEEEEEEEEEEEEEEEEEEEEE"))
+        addCheckBox(yesterday, "EEEEEEEEEE", context)
         addCheckBox(yesterday, "ABCKDK", context)
-        addCheckBox(week, "ABCKDK", context)
-        addCheckBox(week, "ABCKDK", context)
         addCheckBox(week, "ABCKDK", context)
         addCheckBox(week, "ABCKDK", context)
         addCheckBox(year, "LLLLLLLLLLLLLLLLLLLLLLL", context)
@@ -157,26 +130,6 @@ class RepeatFragment : Fragment() {
     public override fun onDetach() {
         super.onDetach()
         mListener = null
-    }
-
-    //TODO FIXME XXX Add onclicklisteners to all checkboxes, that run a function that does this?
-    private fun layoutOnClickListener(layout: LinearLayout?) {
-        layout?.setOnClickListener {
-            var i: Int = 0
-            var remove = true
-            Log.i("ChildCount", layout.childCount.toString())
-            while(i < layout.childCount) {
-                var a: CheckBox = layout?.getChildAt(i) as CheckBox
-                if(!a.isChecked) {
-                    remove = false
-                    break
-                }
-                i++
-            }
-            if(remove) {
-                layout?.animate().translationX(layout.width.toFloat())
-            }
-        }
     }
 
     /**
@@ -203,4 +156,4 @@ class RepeatFragment : Fragment() {
         }
 
     }
-}// Required empty public constructor
+}
