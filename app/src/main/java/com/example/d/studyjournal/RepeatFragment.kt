@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.CompoundButton
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -47,11 +48,48 @@ class RepeatFragment : Fragment() {
         checkBox.text = text
         checkBox.width = ActionBar.LayoutParams.MATCH_PARENT
         checkBox.height = height
+
         return checkBox
+    }
+
+    private fun listener(l: LinearLayout?) {
+        var i = 0
+        var remove = true
+        Log.i("ChildCount", l?.childCount.toString())
+        while(i < l!!.childCount) {
+            var a: CheckBox = l?.getChildAt(i) as CheckBox
+            if (!a.isChecked) {
+                remove = false
+                break
+            }
+            i++
+        }
+        if(remove) {
+            l?.animate().translationX(l.width.toFloat())
+        }
     }
 
     private fun addCheckBox(l: LinearLayout?, text: String, ctx: Context) {
         val checkBox = createCheckBox(text)
+        checkBox.setOnCheckedChangeListener { checkBox, isChecked ->  listener(l)}
+
+        /*checkBox.setOnCheckedChangeListener {
+            var i = 0
+            var remove = true
+            Log.i("ChildCount", l?.childCount.toString())
+            while(i < l!!.childCount) {
+                var a: CheckBox = l?.getChildAt(i) as CheckBox
+                if (!a.isChecked) {
+                    remove = false
+                    break
+                }
+                i++
+            }
+            if(remove) {
+                l?.animate().translationX(l.width.toFloat())
+            }
+        }
+        */
         l?.addView(checkBox)
     }
 
