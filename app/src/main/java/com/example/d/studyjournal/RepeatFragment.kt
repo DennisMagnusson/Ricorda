@@ -32,16 +32,14 @@ class RepeatFragment : Fragment() {
     private var mListener:OnFragmentInteractionListener? = null
 
     //Probably not initializing properly
-    var yesterday: LinearLayout? = null
-    var week: LinearLayout? = null
-    var month: LinearLayout?= null
-    var year: LinearLayout? = null
+    private var yesterday: LinearLayout? = null
+    private var week: LinearLayout? = null
+    private var month: LinearLayout?= null
+    private var year: LinearLayout? = null
 
     private lateinit var res: android.content.res.Resources
-    //TODO Make private
     private var height: Int = -1
 
-    //TODO  Make private
     private fun createCheckBox(text:String) : CheckBox {
         val checkBox = CheckBox(activity)
         checkBox.isChecked = false
@@ -86,7 +84,7 @@ class RepeatFragment : Fragment() {
         l?.addView(checkBox)
     }
 
-    public override fun onCreate(savedInstanceState:Bundle?) {
+    override fun onCreate(savedInstanceState:Bundle?) {
         super.onCreate(savedInstanceState)
         if (getArguments() != null) {
             text = getArguments().getString("text")
@@ -94,7 +92,7 @@ class RepeatFragment : Fragment() {
         Log.i("This is in", "onCreate")
     }
 
-    public override fun onCreateView(inflater:LayoutInflater?, container:ViewGroup?,
+    override fun onCreateView(inflater:LayoutInflater?, container:ViewGroup?,
                                      savedInstanceState:Bundle?):View? {
         res = resources
         height = res.getDimension(R.dimen.repeat_checkbox_height).toInt()
@@ -121,13 +119,13 @@ class RepeatFragment : Fragment() {
         if (mListener != null) mListener!!.onFragmentInteraction(uri)
     }
 
-    public override fun onAttach(context:Context?) {
+    override fun onAttach(context:Context?) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) mListener = context as OnFragmentInteractionListener?
         else throw RuntimeException((context!!.toString() + " must implement OnFragmentInteractionListener"))
     }
 
-    public override fun onDetach() {
+    override fun onDetach() {
         super.onDetach()
         mListener = null
     }
@@ -139,7 +137,6 @@ class RepeatFragment : Fragment() {
      * activity.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onFragmentInteraction(uri:Uri)
     }
 
