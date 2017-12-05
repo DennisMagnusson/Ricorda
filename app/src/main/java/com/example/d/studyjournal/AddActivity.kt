@@ -1,8 +1,13 @@
 package com.example.d.studyjournal
 
+import android.app.ActionBar
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.CardView
+import android.util.Log
+import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -25,6 +30,10 @@ class AddActivity : AppCompatActivity() {
         addButton = findViewById(R.id.addButton)
         editText = findViewById(R.id.editText)
 
+        findViewById<TextView>(R.id.doneButton).setOnClickListener {
+            Log.i("Test", "Exit button thingy is pressed")
+        }
+
         addButton.setOnClickListener {
             addLayout.addView(createTextView(editText.text.toString()))
             editText.text.clear()
@@ -34,8 +43,6 @@ class AddActivity : AppCompatActivity() {
     private fun createTextView(text:String): LinearLayout {
         var layout = LinearLayout(this@AddActivity)
         layout.orientation = LinearLayout.HORIZONTAL
-        //layout.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-        //layout.layoutParams.width  = ViewGroup.LayoutParams.MATCH_PARENT
 
         val textView = TextView(this@AddActivity)
         textView.text = text

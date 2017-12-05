@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,53 +14,106 @@
             android:id="@+id/addToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
             android:background="?attr/colorPrimary"
             android:theme="?attr/actionBarTheme"
-            app:title="@string/add_header_string" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:title="@string/add_header_string"
+            android:layout_above="@id/scrollView">
 
             <LinearLayout
-                android:id="@+id/addLayout"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="right"
+                android:layoutDirection="rtl"><!--Shitty Hack #0002-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <ImageButton
+                    android:id="@+id/doneButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/editText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="Today I learned..."
-                        android:inputType="textPersonName" />
-
-                    <Button
-                        android:id="@+id/addButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="C" />
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="clip_vertical"
-                    android:layout_marginBottom="10dp"
-                    android:text="Button" />
+                    android:paddingRight="10dp"
+                    app:srcCompat="@drawable/ic_done_black_24dp"
+                    android:background="#00000000"
+                    android:foregroundGravity="right"
+                    />
 
             </LinearLayout>
-        </LinearLayout>
+
+
+            <!--
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_done_black_24dp" />
+                -->
+
+            <!--
+            <TextView
+                android:id="@+id/addItems"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="24dp"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:drawableBottom=""
+                android:text="Add"
+                android:textColor="@color/black"/>
+                -->
+
+        </android.support.v7.widget.Toolbar>
+
+
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/addLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/editText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="Today I learned..."
+                                android:inputType="textPersonName" />
+
+                            <!--Hack-->
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"/>
+
+                            <Button
+                                android:id="@+id/addButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
 
         <!-- TODO FIXME Put this in a popup or something
         <DatePicker
