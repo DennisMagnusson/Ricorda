@@ -9,7 +9,9 @@
     <string name="read_tab_text">Read</string>
     <string name="repeat_tab_text">Repeat</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_header_string">What did you learn today?</string>
+
+    <string name="file_name">.studyJournal</string>
+    <string name="date_format">yyyy-MM-dd</string>
 </resources>

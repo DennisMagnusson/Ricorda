@@ -16,6 +16,11 @@ import android.widget.CompoundButton
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.FileReader
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -103,6 +108,34 @@ class RepeatFragment : Fragment() {
         week = view?.findViewById(R.id.weekLayout)
         month = view?.findViewById(R.id.monthLayout)
         year = view?.findViewById(R.id.yearLayout)
+
+
+        val filename = context.filesDir.path + "/.studyJournal"
+        Log.i("OOOOOAOOOAOAOOAOAO", filename)
+        if(!File(filename).exists()) {
+            FileOutputStream(filename).close()
+        }
+
+        var currentDate = Date()
+        var format = SimpleDateFormat(resources.getString(R.string.date_format))
+        format.parse("2017-12-08")
+        val formatLength = resources.getString(R.string.date_format).length
+        val str = format.format(currentDate)
+        Log.i("STSTSSTSTSTSTSTDATE", str)
+        Log.i("CurrentDate:", currentDate.toString())
+
+        val reader = FileReader(filename)
+        Log.i("ALSDKFJASDF", reader.readText())
+        Log.i("RERERERERE", "ABC")
+        for(line in reader.readLines()) {
+            var str = line
+            val dateStr = str.substring(0, formatLength)
+            val lineDate = format.parse(dateStr)
+            str = str.substring(formatLength)
+
+            Log.i(dateStr, str)
+        }
+
 
         addCheckBox(yesterday, "EEEEEEEEEE", context)
         addCheckBox(yesterday, "ABCKDK", context)
