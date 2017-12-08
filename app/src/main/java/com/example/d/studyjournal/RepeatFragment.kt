@@ -16,6 +16,7 @@ import android.widget.CompoundButton
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_calendar.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.FileReader
@@ -44,6 +45,10 @@ class RepeatFragment : Fragment() {
 
     private lateinit var res: android.content.res.Resources
     private var height: Int = -1
+
+    private val DAYS_IN_WEEK  = 7
+    private val DAYS_IN_MONTH = 30
+    private val DAYS_IN_YEAR  = 365
 
     private fun createCheckBox(text:String) : CheckBox {
         val checkBox = CheckBox(activity)
@@ -82,9 +87,9 @@ class RepeatFragment : Fragment() {
         }
     }
 
-    private fun addCheckBox(l: LinearLayout?, text: String, ctx: Context) {
+    private fun addCheckBox(l: LinearLayout?, text: String) {
         val checkBox = createCheckBox(text)
-        checkBox.setOnCheckedChangeListener { checkBox, isChecked ->  listener(l)}
+        checkBox.setOnCheckedChangeListener { checkBox, _ ->  listener(l)}
 
         l?.addView(checkBox)
     }
@@ -109,43 +114,63 @@ class RepeatFragment : Fragment() {
         month = view?.findViewById(R.id.monthLayout)
         year = view?.findViewById(R.id.yearLayout)
 
+        addToCards()
 
+        //TODO FIXME Remove for production
+        addCheckBox(yesterday, "EEEEEEEEEE")
+        addCheckBox(yesterday, "ABCKDK")
+        addCheckBox(week, "ABCKDK")
+        addCheckBox(year, "LLLLLLLLLLLLLLLLLLLLLLL")
+        addCheckBox(month, "OOOOOOWWWWWWWWWEEEEEOOOOOOOO")
+
+        return view
+    }
+
+    private fun addToCards() {
         val filename = context.filesDir.path + "/.studyJournal"
-        Log.i("OOOOOAOOOAOAOOAOAO", filename)
-        if(!File(filename).exists()) {
-            FileOutputStream(filename).close()
-        }
+        //Create file if doesn't exist
+        if(!File(filename).exists()) FileOutputStream(filename).close()
+
+        var format = SimpleDateFormat(resources.getString(R.string.date_format))
+        val formatLength = resources.getString(R.string.date_format).length
 
         var currentDate = Date()
-        var format = SimpleDateFormat(resources.getString(R.string.date_format))
-        format.parse("2017-12-08")
-        val formatLength = resources.getString(R.string.date_format).length
-        val str = format.format(currentDate)
-        Log.i("STSTSSTSTSTSTSTDATE", str)
-        Log.i("CurrentDate:", currentDate.toString())
+        val calendar = Calendar.getInstance()
+        calendar.time = currentDate
+
+        //Calendars needed
+        val yesterdayCal = calendar.clone() as Calendar
+        yesterdayCal.add(Calendar.DAY_OF_YEAR, -1)
+        val weekAgoCal = calendar.clone() as Calendar
+        weekAgoCal.add(Calendar.DAY_OF_YEAR, -DAYS_IN_WEEK)
+        val monthAgoCal = calendar.clone() as Calendar
+        monthAgoCal.add(Calendar.DAY_OF_YEAR, -DAYS_IN_MONTH)
+        val yearAgoCal = calendar.clone() as Calendar
+        yearAgoCal.add(Calendar.DAY_OF_YEAR, -DAYS_IN_YEAR)
 
         val reader = FileReader(filename)
-        Log.i("ALSDKFJASDF", reader.readText())
-        Log.i("RERERERERE", "ABC")
         for(line in reader.readLines()) {
             var str = line
             val dateStr = str.substring(0, formatLength)
+            str = str.substring(formatLength+1)
+
             val lineDate = format.parse(dateStr)
-            str = str.substring(formatLength)
+            var lineCal = Calendar.getInstance()
+            lineCal.time = lineDate
 
-            Log.i(dateStr, str)
+            if(equalsDay(lineCal, yesterdayCal))     addCheckBox(yesterday, str)
+            else if(equalsDay(lineCal, weekAgoCal))  addCheckBox(week, str)
+            else if(equalsDay(lineCal, monthAgoCal)) addCheckBox(month, str)
+            else if(equalsDay(lineCal, yearAgoCal))  addCheckBox(year, str)
         }
+    }
 
-
-        addCheckBox(yesterday, "EEEEEEEEEE", context)
-        addCheckBox(yesterday, "ABCKDK", context)
-        addCheckBox(week, "ABCKDK", context)
-        addCheckBox(week, "ABCKDK", context)
-        addCheckBox(year, "LLLLLLLLLLLLLLLLLLLLLLL", context)
-        addCheckBox(month, "OOOOOOWWWWWWWWWEEEEEOOOOOOOO", context)
-        Log.i("This is in", "onCreateView")
-
-        return view
+    //Checks if day, month and year are equal
+    private fun equalsDay(cal1: Calendar, cal2: Calendar): Boolean {
+        var b = cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)
+        b = b && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)
+        b = b && cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
+        return b
     }
 
     fun onButtonPressed(uri:Uri) {
