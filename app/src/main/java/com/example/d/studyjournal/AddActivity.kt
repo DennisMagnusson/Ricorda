@@ -40,17 +40,14 @@ class AddActivity : AppCompatActivity() {
 
         findViewById<AppCompatImageButton>(R.id.doneButton).setOnClickListener {
             writeToFile()
-            exit()
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         addButton.setOnClickListener {
-            exit()
+            if(editText.text.toString() != "")
+                addLayout.addView(createTextView(editText.text.toString()))
+            editText.text.clear()
         }
-    }
-
-    private fun exit() {
-        addLayout.addView(createTextView(editText.text.toString()))
-        editText.text.clear()
     }
 
     private fun writeToFile() {

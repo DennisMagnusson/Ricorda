@@ -26,7 +26,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
-class MainActivity : AppCompatActivity(), RepeatFragment.OnFragmentInteractionListener, CalendarFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), RepeatFragment.OnFragmentInteractionListener, CalendarFragment.OnFragmentInteractionListener, ReadFragment.OnFragmentInteractionListener {
 
     //Fuck this shit
     override fun onFragmentInteraction(uri: Uri) {
@@ -98,7 +98,8 @@ class MainActivity : AppCompatActivity(), RepeatFragment.OnFragmentInteractionLi
             // Return a PlaceholderFragment (defined as a static inner class below).
             //return PlaceholderFragment.newInstance(position + 1)
             if(position == 0) return RepeatFragment.newInstance("f")
-            if(position == 1) return CalendarFragment.newInstance("F", "temp")
+            if(position == 1) return ReadFragment.newInstance("", "")
+            //if(position == 1) return CalendarFragment.newInstance("F", "temp")
             //if(position == 1) return PlaceholderFragment.newInstance(position+1)
 
             return RepeatFragment.newInstance("1337")

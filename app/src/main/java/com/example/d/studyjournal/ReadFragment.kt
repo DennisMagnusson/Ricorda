@@ -1,12 +1,21 @@
 package com.example.d.studyjournal
 
 import android.content.Context
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.CardView
+import android.util.LayoutDirection
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.widget.LinearLayout
+import android.widget.Space
+import android.widget.TextView
+import java.io.FileReader
 
 
 /**
@@ -25,6 +34,8 @@ class ReadFragment : Fragment() {
 
     private var mListener: OnFragmentInteractionListener? = null
 
+    private var layout: LinearLayout? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
@@ -36,7 +47,70 @@ class ReadFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_read, container, false)
+
+        var view = inflater!!.inflate(R.layout.fragment_read, container, false)
+
+        layout = view?.findViewById(R.id.readLayout)
+
+        val filename = context.filesDir.path + "/.studyJournal"
+        val reader = FileReader(filename)
+
+        val dateFormatLength = getString(R.string.date_format).length
+        var date = ""
+        var cardLayout: LinearLayout? = null
+        var cardView: CardView? = null
+        for(line in reader.readLines().reversed()) {
+            var str = line
+            val dateStr = str.substring(0, dateFormatLength)
+            Log.i("Linea:", str)
+            if(dateStr != date) {
+                date = dateStr
+                if(cardLayout != null) {
+                    layout?.addView(cardView)
+                    var space = Space(activity)
+                    space.minimumHeight = resources.getDimension(R.dimen.card_vertical_margin).toInt() //TODO Change to dp
+                    layout?.addView(space)
+                    Log.i(dateStr, "Where the honies at?")
+                }
+                cardView = createCardView(dateStr)
+                cardLayout = cardView.getChildAt(0) as LinearLayout
+                Log.i(dateStr, "Go mario!")
+            }
+            str = str.substring(dateFormatLength+1)
+            if(str == "") continue
+            cardLayout?.addView(createTextView(str))
+        }
+
+        if(cardLayout != null) {
+            layout?.addView(cardView)
+            var space = Space(activity)
+            space.minimumHeight = resources.getDimension(R.dimen.card_vertical_margin).toInt()
+            layout?.addView(space)
+        }
+
+        return view
+    }
+
+    private fun createTextView(text: String): TextView {
+        var textView = TextView(activity)
+        textView.text = text
+        textView.textSize = resources.getDimension(R.dimen.read_text_size)
+        return textView
+    }
+
+    private fun createCardView(date: String): CardView {
+        var card = CardView(activity)
+        var layout = LinearLayout(activity)
+        layout.orientation = LinearLayout.VERTICAL
+
+        var textView = TextView(activity)
+        textView.text = date
+        textView.setTextColor(Color.GRAY)
+
+        layout.addView(textView)
+        card.addView(layout)
+
+        return card
     }
 
     // TODO: Rename method, update argument and hook method into UI event

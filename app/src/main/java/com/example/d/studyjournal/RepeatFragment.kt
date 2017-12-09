@@ -37,7 +37,6 @@ class RepeatFragment : Fragment() {
 
     private var mListener:OnFragmentInteractionListener? = null
 
-    //Probably not initializing properly
     private var yesterday: LinearLayout? = null
     private var week: LinearLayout? = null
     private var month: LinearLayout?= null
