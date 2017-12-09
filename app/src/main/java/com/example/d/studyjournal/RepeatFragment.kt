@@ -3,6 +3,7 @@ package com.example.d.studyjournal
 import android.app.ActionBar
 import android.content.Context
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.CardView
@@ -115,13 +116,10 @@ class RepeatFragment : Fragment() {
 
         addToCards()
 
-        //TODO FIXME Remove for production
-        addCheckBox(yesterday, "EEEEEEEEEE")
-        addCheckBox(yesterday, "ABCKDK")
-        addCheckBox(week, "ABCKDK")
-        addCheckBox(year, "LLLLLLLLLLLLLLLLLLLLLLL")
-        addCheckBox(month, "OOOOOOWWWWWWWWWEEEEEOOOOOOOO")
-
+        if(yesterday?.childCount == 1) yesterday?.visibility = View.GONE
+        if(week?.childCount == 1) week?.visibility = View.GONE
+        if(month?.childCount == 1) month?.visibility = View.GONE
+        if(year?.childCount == 1) year?.visibility = View.GONE
         return view
     }
 
