@@ -11,6 +11,11 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.support.v7.app.AppCompatDelegate
+import android.support.v7.view.menu.ActionMenuItem
+import android.support.v7.view.menu.ActionMenuItemView
+import android.support.v7.widget.ActionMenuView
 import android.support.v7.widget.CardView
 import android.util.Log
 import android.view.LayoutInflater
@@ -49,6 +54,13 @@ class MainActivity : AppCompatActivity(), RepeatFragment.OnFragmentInteractionLi
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        if(prefs.getBoolean("night_switch", false))
+            delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        else
+            delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
         setSupportActionBar(toolbar)
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -80,6 +92,7 @@ class MainActivity : AppCompatActivity(), RepeatFragment.OnFragmentInteractionLi
         val id = item.itemId
 
         if (id == R.id.action_settings) {
+            startActivity(Intent(this, SettingsActivity::class.java))
             return true
         }
 

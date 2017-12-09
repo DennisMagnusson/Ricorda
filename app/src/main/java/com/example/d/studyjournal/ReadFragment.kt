@@ -15,6 +15,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.Space
 import android.widget.TextView
+import com.example.d.studyjournal.R.attr.theme
 import java.io.FileReader
 
 
