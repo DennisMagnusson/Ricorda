@@ -88,8 +88,6 @@ class RepeatFragment : Fragment() {
 
     private fun removeCardAction(layout: LinearLayout) {
         layout.visibility = View.GONE
-        Log.i("vis == GONE: ", (layout?.visibility == View.GONE).toString())//Obviously true
-        Log.i("yesterday == GONE: ", (yesterday?.visibility == View.GONE).toString())//False
         addTextIfDone()
         writeFileIfDone()
     }
@@ -108,7 +106,6 @@ class RepeatFragment : Fragment() {
         if (getArguments() != null) {
             text = getArguments().getString("text")
         }
-        Log.i("This is in", "onCreate")
     }
 
     override fun onCreateView(inflater:LayoutInflater?, container:ViewGroup?,
@@ -151,8 +148,6 @@ class RepeatFragment : Fragment() {
         val format = SimpleDateFormat(resources.getString(R.string.date_format))
         val dateStr = format.format(Date())
         for(line in reader.readLines()) {
-            Log.i("Reading Lines: ", line)
-            Log.i("Date str: ", dateStr)
             if(line == dateStr)
                 return true
         }
@@ -161,8 +156,6 @@ class RepeatFragment : Fragment() {
     }
 
     private fun isDone(): Boolean {
-        Log.i("yesterday.vis is GONE", (yesterday?.visibility == View.GONE).toString())
-        Log.i("year.vis is GONE", (year?.visibility == View.GONE).toString())
         return (yesterday?.visibility == View.GONE && week?.visibility == View.GONE
             && month?.visibility == View.GONE && year?.visibility == View.GONE)
     }
@@ -188,8 +181,6 @@ class RepeatFragment : Fragment() {
         try {
             val stream = FileOutputStream(file, false)
             val writer = OutputStreamWriter(stream)
-
-            Log.i("Writing file", "AREWORWORUAWEORUAWOERUWOERUWOAUWEORAOWERUA")
 
             writer.write(dateStr)
 

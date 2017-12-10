@@ -7,13 +7,16 @@ import android.os.Bundle
 import android.os.Environment
 import android.support.v7.widget.AppCompatImageButton
 import android.support.v7.widget.CardView
+import android.text.method.KeyListener
 import android.util.Log
 import android.view.Gravity
+import android.view.KeyEvent
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.example.d.studyjournal.R.id.textView
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -37,6 +40,7 @@ class AddActivity : AppCompatActivity() {
         addLayout = findViewById(R.id.addLayout)
         addButton = findViewById(R.id.addButton)
         editText = findViewById(R.id.editText)
+        editText.setOnKeyListener(View.OnKeyListener { view, i, keyEvent -> onEnter(keyEvent, i)})
 
         findViewById<AppCompatImageButton>(R.id.doneButton).setOnClickListener {
             writeToFile()
@@ -48,6 +52,17 @@ class AddActivity : AppCompatActivity() {
                 addLayout.addView(createTextView(editText.text.toString()))
             editText.text.clear()
         }
+    }
+
+    private fun onEnter(event: KeyEvent, i: Int): Boolean {
+        if(i == KeyEvent.KEYCODE_ENTER) {
+            if(editText.text.toString() != "")
+                addLayout.addView(createTextView(editText.text.toString()))
+            editText.text.clear()
+            return true
+        }
+
+        return false
     }
 
     private fun writeToFile() {
