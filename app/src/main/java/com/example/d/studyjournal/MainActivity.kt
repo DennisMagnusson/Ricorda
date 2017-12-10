@@ -1,5 +1,8 @@
 package com.example.d.studyjournal
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.support.design.widget.TabLayout
@@ -30,6 +33,7 @@ import android.widget.TextView
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
+import java.util.*
 
 class MainActivity : AppCompatActivity(), RepeatFragment.OnFragmentInteractionListener, CalendarFragment.OnFragmentInteractionListener, ReadFragment.OnFragmentInteractionListener {
 
@@ -77,6 +81,21 @@ class MainActivity : AppCompatActivity(), RepeatFragment.OnFragmentInteractionLi
         }
 
         repeatFragment = mSectionsPagerAdapter?.getItem(REPEAT_INDEX) as RepeatFragment
+
+        if(prefs.getBoolean("notification_switch", false)) {
+            val calendar = Calendar.getInstance()
+            calendar.set(Calendar.HOUR_OF_DAY, 21)
+            calendar.set(Calendar.MINUTE, 0)
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+
+            val notificationIntent = Intent(this@MainActivity, NotificationReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(this@MainActivity, 0, notificationIntent, 0)
+
+            val alarmMan = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarmMan.set(AlarmManager.RTC, calendar.timeInMillis, pendingIntent)
+        }
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

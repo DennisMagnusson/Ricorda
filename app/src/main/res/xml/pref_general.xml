@@ -5,12 +5,10 @@
         android:key="night_switch"
         android:summary="Enable dark theme"
         android:title="Night Mode" />
-
-    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
-    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
-
-    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-         dismiss it. -->
-    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="notification_switch"
+        android:summary="Sends notification if you haven't practiced today"
+        android:title="Daily notifications" />
 
 </PreferenceScreen>

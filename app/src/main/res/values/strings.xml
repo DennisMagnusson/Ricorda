@@ -6,8 +6,8 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_main">StudyJournal</string>
-    <string name="read_tab_text">Read</string>
-    <string name="repeat_tab_text">Repeat</string>
+    <string name="read_tab_text">My Journal</string>
+    <string name="repeat_tab_text">Practice</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_header_string">What did you learn today?</string>
@@ -88,5 +88,5 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="empty_journal_text">Your study journal is empty. Press the + button to add something!</string>
-    <string name="done_text">You\'re all done for today! Don\'t forget to write what you learned today!</string>
+    <string name="done_text">You\'re all done for today! Don\'t forget to write down what you\'ve learned today!</string>
 </resources>
