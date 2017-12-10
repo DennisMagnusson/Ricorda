@@ -63,19 +63,16 @@ class ReadFragment : Fragment() {
         for(line in reader.readLines().reversed()) {
             var str = line
             val dateStr = str.substring(0, dateFormatLength)
-            Log.i("Linea:", str)
             if(dateStr != date) {
                 date = dateStr
                 if(cardLayout != null) {
                     layout?.addView(cardView)
                     var space = Space(activity)
-                    space.minimumHeight = resources.getDimension(R.dimen.card_vertical_margin).toInt() //TODO Change to dp
+                    space.minimumHeight = resources.getDimension(R.dimen.card_vertical_margin).toInt()
                     layout?.addView(space)
-                    Log.i(dateStr, "Where the honies at?")
                 }
                 cardView = createCardView(dateStr)
                 cardLayout = cardView.getChildAt(0) as LinearLayout
-                Log.i(dateStr, "Go mario!")
             }
             str = str.substring(dateFormatLength+1)
             if(str == "") continue
@@ -87,6 +84,11 @@ class ReadFragment : Fragment() {
             var space = Space(activity)
             space.minimumHeight = resources.getDimension(R.dimen.card_vertical_margin).toInt()
             layout?.addView(space)
+        } else {
+            val textView = TextView(activity)
+            textView.text = getString(R.string.empty_journal_text)
+            textView.textSize = 22f
+            layout?.addView(textView)
         }
 
         return view

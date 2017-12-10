@@ -15,12 +15,11 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.LinearLayout
+import android.widget.TextView
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_calendar.*
-import java.io.File
-import java.io.FileOutputStream
-import java.io.FileReader
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,6 +41,7 @@ class RepeatFragment : Fragment() {
     private var week: LinearLayout? = null
     private var month: LinearLayout?= null
     private var year: LinearLayout? = null
+    private var baseLayout: LinearLayout? = null
 
     private lateinit var res: android.content.res.Resources
     private var height: Int = -1
@@ -63,7 +63,6 @@ class RepeatFragment : Fragment() {
     private fun listener(l: LinearLayout?) {
         var i = 0
         var remove = true
-        Log.i("ChildCount", l?.childCount.toString())
         while(i < l!!.childCount) {
             var a: CheckBox
             try {
@@ -83,11 +82,21 @@ class RepeatFragment : Fragment() {
             card.animate().translationX(l.width.toFloat())
                           .alpha(0.0f)
                           .setDuration(1000)
-                          .withEndAction({card.visibility = View.GONE})
+                          .withEndAction({removeCardAction(l)})
         }
     }
 
+    private fun removeCardAction(layout: LinearLayout) {
+        layout.visibility = View.GONE
+        Log.i("vis == GONE: ", (layout?.visibility == View.GONE).toString())//Obviously true
+        Log.i("yesterday == GONE: ", (yesterday?.visibility == View.GONE).toString())//False
+        addTextIfDone()
+        writeFileIfDone()
+    }
+
     private fun addCheckBox(l: LinearLayout?, text: String) {
+        if(text == "") return
+
         val checkBox = createCheckBox(text)
         checkBox.setOnCheckedChangeListener { checkBox, _ ->  listener(l)}
 
@@ -114,19 +123,91 @@ class RepeatFragment : Fragment() {
         month = view?.findViewById(R.id.monthLayout)
         year = view?.findViewById(R.id.yearLayout)
 
-        addToCards()
+        baseLayout = view?.findViewById(R.id.repeatBaseLayout)
+
+        if(!isDoneFile())
+            addToCards()
 
         if(yesterday?.childCount == 1) yesterday?.visibility = View.GONE
         if(week?.childCount == 1) week?.visibility = View.GONE
         if(month?.childCount == 1) month?.visibility = View.GONE
         if(year?.childCount == 1) year?.visibility = View.GONE
+
+        if(isDone())
+            addTextIfDone()
+
         return view
+    }
+
+    private fun isDoneFile(): Boolean {
+        val filename = context.filesDir.path + "/.done"
+
+        val file = File(filename)
+        if(!file.exists())
+            FileOutputStream(filename).close()
+
+        val reader = FileReader(filename)
+
+        val format = SimpleDateFormat(resources.getString(R.string.date_format))
+        val dateStr = format.format(Date())
+        for(line in reader.readLines()) {
+            Log.i("Reading Lines: ", line)
+            Log.i("Date str: ", dateStr)
+            if(line == dateStr)
+                return true
+        }
+
+        return false
+    }
+
+    private fun isDone(): Boolean {
+        Log.i("yesterday.vis is GONE", (yesterday?.visibility == View.GONE).toString())
+        Log.i("year.vis is GONE", (year?.visibility == View.GONE).toString())
+        return (yesterday?.visibility == View.GONE && week?.visibility == View.GONE
+            && month?.visibility == View.GONE && year?.visibility == View.GONE)
+    }
+
+    private fun addTextIfDone() {
+        if(isDone()) {
+            var textView = TextView(activity)
+            textView.text = getString(R.string.done_text)
+            baseLayout?.addView(textView)
+        }
+    }
+
+    private fun writeFileIfDone() {
+        if(!isDone()) return
+
+        val filename = context.filesDir.path + "/.done"
+        val file = File(filename)
+        if(!file.exists())
+            FileOutputStream(filename).close()
+
+        val format = SimpleDateFormat(resources.getString(R.string.date_format))
+        val dateStr = format.format(Date())
+        try {
+            val stream = FileOutputStream(file, false)
+            val writer = OutputStreamWriter(stream)
+
+            Log.i("Writing file", "AREWORWORUAWEORUAWOERUWOERUWOAUWEORAOWERUA")
+
+            writer.write(dateStr)
+
+            writer.close()
+            stream.flush()
+            stream.close()
+        } catch(e: IOException) {
+            Log.e("ERROR", "Error writing to file.")
+        }
     }
 
     private fun addToCards() {
         val filename = context.filesDir.path + "/.studyJournal"
         //Create file if doesn't exist
-        if(!File(filename).exists()) FileOutputStream(filename).close()
+        if(!File(filename).exists()) {
+            FileOutputStream(filename).close()
+            return
+        }
 
         var format = SimpleDateFormat(resources.getString(R.string.date_format))
         val formatLength = resources.getString(R.string.date_format).length
