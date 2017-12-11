@@ -39,9 +39,6 @@ class CalendarFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view = inflater!!.inflate(R.layout.fragment_calendar, container, false)
-        val calendar: CalendarView = view.findViewById(R.id.calendarView)
-        //TODO Replace the calendar with something else
-        //calendar.draw()//I guess we're doing this
         return view
     }
 
