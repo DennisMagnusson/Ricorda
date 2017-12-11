@@ -1,4 +1,4 @@
-package tech.dennismagnusson.studyjournal
+package tech.dennismagnusson.ricorda
 
 import android.content.Context
 import android.graphics.Color
@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Space
 import android.widget.TextView
-import tech.dennismagnusson.studyjournal.R
 import java.io.FileReader
 
 
@@ -84,7 +83,7 @@ class ReadFragment : Fragment() {
         } else {
             val textView = TextView(activity)
             textView.text = getString(R.string.empty_journal_text)
-            textView.textSize = resources.getDimension(R.dimen.read_skill_text_size)
+            //textView.textSize = resources.getDimension(R.dimen.read_skill_text_size)
             layout?.addView(textView)
         }
 

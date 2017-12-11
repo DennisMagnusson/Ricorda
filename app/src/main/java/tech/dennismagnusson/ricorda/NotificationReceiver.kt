@@ -1,4 +1,4 @@
-package tech.dennismagnusson.studyjournal
+package tech.dennismagnusson.ricorda
 
 import android.content.BroadcastReceiver
 import android.content.Context

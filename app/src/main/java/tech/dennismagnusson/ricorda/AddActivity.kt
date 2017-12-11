@@ -1,4 +1,4 @@
-package tech.dennismagnusson.studyjournal
+package tech.dennismagnusson.ricorda
 
 import android.content.Intent
 import android.graphics.Color
@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.*
-import tech.dennismagnusson.studyjournal.R
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -80,7 +79,6 @@ class AddActivity : AppCompatActivity() {
                 val k = addLayout.getChildAt(i)
                 if(k is LinearLayout) {
                     val textView = k.getChildAt(0) as TextView
-                    Log.i("Writing to file: ", textView.text.toString())
                     writer.append(dateString + " " + textView.text.toString())
                     writer.append("\n")
                 }

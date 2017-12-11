@@ -1,4 +1,4 @@
-package tech.dennismagnusson.studyjournal
+package tech.dennismagnusson.ricorda
 
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -16,7 +16,6 @@ import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatDelegate
 import android.view.Menu
 import android.view.MenuItem
-import tech.dennismagnusson.studyjournal.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*

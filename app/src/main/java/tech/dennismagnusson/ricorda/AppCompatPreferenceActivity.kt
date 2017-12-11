@@ -1,4 +1,4 @@
-package tech.dennismagnusson.studyjournal
+package tech.dennismagnusson.ricorda
 
 import android.content.res.Configuration
 import android.os.Bundle

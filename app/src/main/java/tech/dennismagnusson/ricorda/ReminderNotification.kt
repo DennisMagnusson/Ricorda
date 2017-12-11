@@ -1,4 +1,4 @@
-package tech.dennismagnusson.studyjournal
+package tech.dennismagnusson.ricorda
 
 import android.annotation.TargetApi
 import android.app.Notification
@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.support.v4.app.NotificationCompat
-import tech.dennismagnusson.studyjournal.R
 import java.io.File
 import java.io.FileOutputStream
 import java.io.FileReader
@@ -32,17 +31,6 @@ object ReminderNotification {
     /**
      * Shows the notification, or updates a previously shown notification of
      * this type, with the given parameters.
-     *
-     *
-     * TODO: Customize this method's arguments to present relevant content in
-     * the notification.
-     *
-     *
-     * TODO: Customize the contents of this method to tweak the behavior and
-     * presentation of reminder notifications. Make
-     * sure to follow the
-     * [
- * Notification design guidelines](https://developer.android.com/design/patterns/notifications.html) when doing so.
      *
      * @see .cancel
      */

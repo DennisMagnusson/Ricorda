@@ -1,4 +1,4 @@
-package tech.dennismagnusson.studyjournal
+package tech.dennismagnusson.ricorda
 
 import android.app.ActionBar
 import android.content.Context
@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
-import tech.dennismagnusson.studyjournal.R
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*

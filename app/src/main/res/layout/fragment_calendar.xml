@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tech.dennismagnusson.studyjournal.CalendarFragment">
+    tools:context="tech.dennismagnusson.ricorda.CalendarFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
