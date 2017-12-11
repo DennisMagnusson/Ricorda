@@ -1,24 +1,19 @@
-package com.example.d.studyjournal
+package tech.dennismagnusson.studyjournal
 
 import android.app.ActionBar
 import android.content.Context
 import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.CardView
-import android.util.LayoutDirection
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.CompoundButton
 import android.widget.LinearLayout
 import android.widget.TextView
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_calendar.*
+import com.example.d.studyjournal.R
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -35,7 +30,7 @@ class RepeatFragment : Fragment() {
 
     private var text: String? = null//The skill string
 
-    private var mListener:OnFragmentInteractionListener? = null
+    private var mListener: OnFragmentInteractionListener? = null
 
     private var yesterday: LinearLayout? = null
     private var week: LinearLayout? = null
@@ -270,7 +265,7 @@ class RepeatFragment : Fragment() {
     companion object {
         private val ARG_PARAM1 = "PLACEHOLDER TEXT ASLFJASLDFIEIEIEIEIEIEI"
 
-        fun newInstance(text:String):RepeatFragment {
+        fun newInstance(text:String): RepeatFragment {
             val fragment = RepeatFragment()
             val args = Bundle()
             args.putString(ARG_PARAM1, text)

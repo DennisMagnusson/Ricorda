@@ -1,21 +1,16 @@
-package com.example.d.studyjournal
+package tech.dennismagnusson.studyjournal
 
-import android.app.ActionBar
 import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.preference.PreferenceManager
 import android.support.v7.widget.AppCompatImageButton
-import android.support.v7.widget.CardView
-import android.text.method.KeyListener
 import android.util.Log
-import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
 import android.widget.*
-import com.example.d.studyjournal.R.id.textView
+import com.example.d.studyjournal.R
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException

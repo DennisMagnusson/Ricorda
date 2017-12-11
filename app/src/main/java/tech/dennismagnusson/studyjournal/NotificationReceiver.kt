@@ -1,4 +1,4 @@
-package com.example.d.studyjournal
+package tech.dennismagnusson.studyjournal
 
 import android.content.BroadcastReceiver
 import android.content.Context

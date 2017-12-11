@@ -1,4 +1,4 @@
-package com.example.d.studyjournal
+package tech.dennismagnusson.studyjournal
 
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -6,33 +6,19 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.support.design.widget.TabLayout
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatDelegate
-import android.support.v7.view.menu.ActionMenuItem
-import android.support.v7.view.menu.ActionMenuItemView
-import android.support.v7.widget.ActionMenuView
-import android.support.v7.widget.CardView
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
+import com.example.d.studyjournal.R
 
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_main.view.*
 import java.util.*
 
 class MainActivity : AppCompatActivity(), RepeatFragment.OnFragmentInteractionListener, CalendarFragment.OnFragmentInteractionListener, ReadFragment.OnFragmentInteractionListener {

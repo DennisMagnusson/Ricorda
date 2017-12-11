@@ -1,4 +1,4 @@
-package com.example.d.studyjournal
+package tech.dennismagnusson.studyjournal
 
 import android.content.Context
 import android.graphics.Color
@@ -6,16 +6,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.CardView
-import android.util.LayoutDirection
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.Space
 import android.widget.TextView
-import com.example.d.studyjournal.R.attr.theme
+import com.example.d.studyjournal.R
 import java.io.FileReader
 
 
