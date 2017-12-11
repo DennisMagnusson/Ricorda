@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.d.studyjournal.R
+import tech.dennismagnusson.studyjournal.R
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*

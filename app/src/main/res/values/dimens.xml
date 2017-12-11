@@ -8,5 +8,7 @@
     <dimen name="card_vertical_margin">5dp</dimen>
     <dimen name="calendar_horizontal_margin">15dp</dimen>
     <dimen name="calendar_header_margin">25dp</dimen>
-    <dimen name="read_text_size">16dp</dimen>
+    <dimen name="read_date_text_size">10dp</dimen>
+    <dimen name="read_skill_text_size">12dp</dimen>
+    <dimen name="add_text_size">12dp</dimen>
 </resources>

@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
-import com.example.d.studyjournal.R
+import tech.dennismagnusson.studyjournal.R
 
 
 /**

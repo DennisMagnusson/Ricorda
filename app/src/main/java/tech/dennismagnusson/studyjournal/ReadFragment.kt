@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Space
 import android.widget.TextView
-import com.example.d.studyjournal.R
+import tech.dennismagnusson.studyjournal.R
 import java.io.FileReader
 
 
@@ -84,7 +84,7 @@ class ReadFragment : Fragment() {
         } else {
             val textView = TextView(activity)
             textView.text = getString(R.string.empty_journal_text)
-            textView.textSize = 22f
+            textView.textSize = resources.getDimension(R.dimen.read_skill_text_size)
             layout?.addView(textView)
         }
 
@@ -94,7 +94,7 @@ class ReadFragment : Fragment() {
     private fun createTextView(text: String): TextView {
         var textView = TextView(activity)
         textView.text = text
-        textView.textSize = resources.getDimension(R.dimen.read_text_size)
+        textView.textSize = resources.getDimension(R.dimen.read_date_text_size)
         return textView
     }
 

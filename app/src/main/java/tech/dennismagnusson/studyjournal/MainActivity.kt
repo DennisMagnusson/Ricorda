@@ -16,7 +16,7 @@ import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatDelegate
 import android.view.Menu
 import android.view.MenuItem
-import com.example.d.studyjournal.R
+import tech.dennismagnusson.studyjournal.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*

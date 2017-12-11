@@ -8,7 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.support.v4.app.NotificationCompat
-import com.example.d.studyjournal.R
+import tech.dennismagnusson.studyjournal.R
 import java.io.File
 import java.io.FileOutputStream
 import java.io.FileReader

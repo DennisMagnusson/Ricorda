@@ -8,7 +8,7 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="notification_switch"
-        android:summary="Sends notification if you haven't practiced today"
+        android:summary="Sends daily notification if you haven't practiced"
         android:title="Daily notifications" />
 
 </PreferenceScreen>

@@ -10,7 +10,7 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.*
-import com.example.d.studyjournal.R
+import tech.dennismagnusson.studyjournal.R
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -95,18 +95,29 @@ class AddActivity : AppCompatActivity() {
         }
     }
 
-    private fun createTextView(text:String): LinearLayout {
-        var layout = LinearLayout(this@AddActivity)
-        layout.orientation = LinearLayout.HORIZONTAL
+    private fun createTextView(text:String): RelativeLayout {
+        var layout = RelativeLayout(this@AddActivity)
+
+        //var layout = LinearLayout(this@AddActivity)
+        //layout.orientation = LinearLayout.HORIZONTAL
 
         val textView = TextView(this@AddActivity)
         textView.text = text
+        //var params = textView.layoutParams as RelativeLayout.LayoutParams
+        var params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        params.addRule(RelativeLayout.ALIGN_PARENT_LEFT)
+        textView.layoutParams = params
+        textView.textSize = resources.getDimension(R.dimen.add_text_size)
 
         val button = Button(this@AddActivity)
         button.setOnClickListener {
             addLayout.removeView(layout)
         }
         button.text = "X"
+        //var buttonParams = button.layoutParams as RelativeLayout.LayoutParams
+        var buttonParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        buttonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+        button.layoutParams = buttonParams
 
         layout.addView(textView)
         layout.addView(button)
