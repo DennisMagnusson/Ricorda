@@ -115,7 +115,7 @@
             </LinearLayout>
         </ScrollView>
 
-        <!-- TODO FIXME Put this in a popup or something
+        <!-- TODO Put this in a popup or something
         <DatePicker
             android:id="@+id/datePicker2"
             android:layout_width="wrap_content"
